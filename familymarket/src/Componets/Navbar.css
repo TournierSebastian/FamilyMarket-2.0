@@ -1,0 +1,30 @@
+.Container-Theme {
+    display: flex;
+    height: 100px;
+    width: 300px;
+  }
+
+  .logo {
+    max-width: 90px; 
+    width: 100%;       
+    height: auto;    
+    margin-right: 20px;
+  }
+
+
+
+
+  
+  
+  /* body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+  }
+  
+  body.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+  } */
+
+
+
