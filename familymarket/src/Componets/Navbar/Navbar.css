@@ -1,0 +1,68 @@
+.navbar-contaier {
+  box-shadow: 0 5px 20px 4px rgb(0, 0, 0);
+}
+
+.logo {
+  max-width: 80px;
+  margin: 10px;
+  width: 100%;
+  height: auto;
+  margin-right: 20px;
+}
+
+.toggle-theme-button {
+  border-style: none;
+}
+
+.icon-cart {
+  max-width: 30px;
+  width: 100%;
+}
+
+.icon-user {
+  max-width: 15px;
+  width: 100%;
+}
+
+.transition-theme {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.icon-search {
+  max-width: 23px;
+  width: 100%;
+}
+
+.btn-search {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-style: solid;
+  border-right-style: none;
+  border-width: 1px;
+}
+
+.input-search {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-style: solid;
+  border-left-style: none;
+  border-width: 1px;
+  border-color: black;
+}
+
+
+
+@media (max-width: 350px) {
+  .Secion-h6 {
+    font-size: 12px;
+  }
+
+  .icon-cart {
+    max-width: 20px;
+    width: 100%;
+  }
+
+  .logo {
+    margin-right: 10px;
+  }
+}

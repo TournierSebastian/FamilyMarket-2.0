@@ -2,7 +2,7 @@
     background-color:  #3654F1 !important; 
 }
 
-.bg-dark{
+.bg-primary-dark{
     background-color:  #051FA6 !important; 
 }
 .bg-secondary
@@ -20,5 +20,35 @@
 }
 .bg-third-dark{
     background-color:  #939191 !important; 
+}
 
+
+.visible-lg {
+    display: flex;
+  }
+.visible-sm {
+    display: none;
+  }
+  @media (max-width: 580px) {
+  
+    .visible-lg {
+      display: none;
+    }
+    .visible-sm {
+      display: flex;
+    }
+  }
+
+
+  main {
+    flex: 1;
+    margin-top: 10px;
+}
+nav {
+    margin-bottom: 10px;
+}
+.contenido {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }

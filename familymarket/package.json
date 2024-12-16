@@ -5,6 +5,8 @@
     "start": "react-scripts start"
   },
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.7.1",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "bootstrap": "^5.3.3",
     "react": "^18.x.x",
     "react-dom": "^18.x.x",
