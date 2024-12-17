@@ -1,8 +1,9 @@
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./Pages/Home";
+import Home from "./Pages/Home/Home";
 import { ThemeProvider } from "./Context/ThemeContext";
+import Login from "./Pages/IniciarSecion/Login";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   },
   {
     path: "/IniciarSesion",
+    element: <Login/>,
+  },
+  {
+    path: "/Registrase",
     element: <></>,
   }
  

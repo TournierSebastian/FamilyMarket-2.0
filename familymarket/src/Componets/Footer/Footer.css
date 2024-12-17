@@ -1,5 +1,7 @@
 .footer-container{
     box-shadow: 0 -5px 20px 4px rgb(0, 0, 0);
+    z-index: 1000;
+    position: relative; 
 }
 .icon-X{
     max-width: 30px;

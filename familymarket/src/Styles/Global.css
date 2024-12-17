@@ -22,6 +22,9 @@
     background-color:  #939191 !important; 
 }
 
+.invert-image {
+  filter: invert(1);
+}
 
 .visible-lg {
     display: flex;
@@ -42,11 +45,8 @@
 
   main {
     flex: 1;
-    margin-top: 10px;
 }
-nav {
-    margin-bottom: 10px;
-}
+
 .contenido {
     display: flex;
     flex-direction: column;

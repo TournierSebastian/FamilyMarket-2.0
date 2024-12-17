@@ -1,5 +1,7 @@
 .navbar-contaier {
   box-shadow: 0 5px 20px 4px rgb(0, 0, 0);
+  z-index: 1000;
+  position: relative; 
 }
 
 .logo {
@@ -63,6 +65,7 @@
   }
 
   .logo {
+    width: 60px;
     margin-right: 10px;
   }
 }

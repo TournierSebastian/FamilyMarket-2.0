@@ -1,0 +1,66 @@
+.Login-Container{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.text-recuperar-contraseña{
+    font-size: 0.8rem;
+}
+
+.text-login label{
+    font-size: 1rem;
+}
+.text-login button{
+    font-size: 1.2rem;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.text-login h3{
+    font-size: 1.5rem;
+}
+.text-login p{
+    font-size: 0.8rem;
+}
+
+@media (max-width: 590px) {
+
+    .Login-Container{
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .logo-login {
+        display: none;
+    }
+
+    .text-login button{
+        font-size: 1rem;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+
+@media (max-width: 477px) {
+
+    .Login-Container{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .text-login label{
+        font-size: 0.8rem;
+    }
+
+    .text-login  input{
+        font-size: 0.5rem;
+    }
+    .text-login h3{
+        font-size: 1.2rem;
+    }
+}
+
