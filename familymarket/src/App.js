@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import { ThemeProvider } from "./Context/ThemeContext";
 import Login from "./Pages/IniciarSecion/Login";
+import { AuthProvider } from "./Context/AuthContext";
+import NotFound from "./Pages/NotFound/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -16,14 +18,16 @@ const router = createBrowserRouter([
   },
   {
     path: "/IniciarSesion",
-    element: <Login/>,
+    element: <Login />,
   },
   {
     path: "/Registrase",
     element: <></>,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   }
- 
- 
 ]);
 
 
@@ -31,7 +35,9 @@ function App() {
   return (
     <div>
       <ThemeProvider>
-          <RouterProvider router={router}></RouterProvider>
+        <AuthProvider>
+          <RouterProvider router={router} ></RouterProvider>
+          </AuthProvider>
         </ThemeProvider>
     </div>
   );

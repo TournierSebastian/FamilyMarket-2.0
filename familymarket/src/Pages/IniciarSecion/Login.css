@@ -55,12 +55,16 @@
     .text-login label{
         font-size: 0.8rem;
     }
-
     .text-login  input{
-        font-size: 0.5rem;
+        font-size: 0.7rem;
     }
     .text-login h3{
         font-size: 1.2rem;
     }
+
+    .text-error{
+        font-size: 0.7rem;
+    }
+  
 }
 

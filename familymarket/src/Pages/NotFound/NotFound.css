@@ -1,0 +1,22 @@
+
+.notfound-logo {
+    width: 100px;
+    top: 0;
+    left: -60px; 
+}
+
+.img-notfound {
+    width: 300px; 
+    height: auto;
+    z-index: 1; 
+}
+
+@media (max-width: 768px) {
+    .notfound-logo {
+        width: 80px;  
+    }
+
+    .img-notfound {
+        width: 200px; 
+    }
+}

@@ -5,21 +5,30 @@ import logo from '../../Assets/Icons/Logo.png'
 import { ThemeContext } from '../../Context/ThemeContext'
 import { Link } from 'react-router-dom'
 import './Login.css'
+import useLogin from '../../Hooks/Authentication/UseLogin'
 const Login = () => {
 
     const { theme } = useContext(ThemeContext)
     const [Email, SetEmail] = useState("");
     const [Password, SetPassword] = useState("");
     const [Validate, SetValidate] = useState(false);
+    
+    const {ValidateLogin, error} = useLogin();
 
-
-    const HandleSumbitFrom = () => {
+    const HandleSumbitFrom = async () => {
         if (Email === "" || Password === "") {
-            SetValidate(true)
+            SetValidate(true);
         } else {
-            SetValidate(false)
+            SetValidate(false);
+            const result = await ValidateLogin(Email, Password);
+            if (result) {
+                // Aquí puedes manejar la redirección o cualquier otra acción después del login exitoso
+                // Por ejemplo, podrías usar el hook useHistory de react-router-dom para redirigir
+                // history.push('/');
+            }
         }
     }
+   
     return (
         <div className='contenido'>
             <nav><Navbar /></nav>
@@ -40,14 +49,13 @@ const Login = () => {
                             ¿Olvidaste tu contraseña?
                         </Link>
                     </div>
-
-                    <div className='d-flex justify-content-center mt-3 text-login'>
+                    {error !== undefined && <p className='text-danger text-center text-error'>{error}</p>}
+                    <div className='d-flex justify-content-center mt-2 text-login'>
                         <button className ={`btn text-white rounded-4 ${theme == "dark" ? "bg-secondary-dark" : "bg-secondary"} `}
                         onClick={HandleSumbitFrom}>
                             Ingresar
                         </button>
                     </div>
-
                 </div>
             </main>
             <footer><Footer /></footer>

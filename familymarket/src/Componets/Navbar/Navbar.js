@@ -2,18 +2,19 @@ import React, { useContext, useEffect, useState } from 'react';
 import "../../Styles/Global.css";
 import Logo from '../../Assets/Icons/Logo.png';
 import cart from '../../Assets/Icons/cart.png';
-import user from '../../Assets/Icons/user.png';
+import usericon from '../../Assets/Icons/user.png';
 import lupa from '../../Assets/Icons/lupa.png';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../../Context/ThemeContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import useFetchUser from '../../Hooks/User/Usefetchuser';
 
 const Navbar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
-
   const [Route, Setroute] = useState("");
+  const { user, loading } = useFetchUser();
 
   useEffect(() => {
     const currentPath = window.location.pathname;
@@ -47,27 +48,34 @@ const Navbar = () => {
           </div>
         )}
 
-        <div className='d-flex align-items-center '>
+        < div className='d-flex align-items-center '>
           <Link to='/MiCarrito' className={`py-2 me-2 px-3 rounded-4 d-flex align-items-center ${theme === "dark" ? 'bg-third-dark' : 'bg-third'} transition-theme`}>
             <img src={cart} alt="Cart" className={`icon-cart ${theme === "dark" ? "invert-image" : ""}`}></img>
           </Link>
-          <Link to={Route === '/IniciarSesion' ? '/Registrarse' : '/IniciarSesion'} className={`btn rounded-4 mx-2 d-flex flex-column justify-content-center align-items-center p-1 ${theme === "dark" ? 'bg-third-dark' : 'bg-third'} transition-theme`}>
-            <h6 className={` m-0 p-0 Secion-h6 ${theme === "dark" ? "text-white" : "text-black"}`}>{Route === '/IniciarSesion' ? 'Registrarse' : 'Iniciar Sesión'}</h6>
-            <img src={user} alt="User" className={`icon-user p-0 m-0 ${theme === "dark" ? "invert-image" : ""}`}></img>
-          </Link>
-        </div>
 
+          {!loading && (
+            <Link to={user ? "/perfil" : Route === '/IniciarSesion' ? '/Registrarse' : '/IniciarSesion'} className={`btn rounded-4 mx-2 d-flex flex-column justify-content-center align-items-center p-1 ${theme === "dark" ? 'bg-third-dark' : 'bg-third'} transition-theme`}>
+              <h6 className={`m-0 p-0 Secion-h6 ${theme === "dark" ? "text-white" : "text-black"}`}>
+                {user ? user.name : (Route === '/IniciarSesion' ? 'Registrarse' : 'Iniciar Sesión')}
+              </h6>
+              <img src={usericon} alt="User" className={`icon-user p-0 m-0 ${theme === "dark" ? "invert-image" : ""}`} />
+            </Link>
+          )}
+
+        </div>
       </div>
 
-      {Route === 'si' && (
-        <div className='visible-sm  ms-2 text-center m'>
-          <button className={`bg-secondary p-2 d-flex align-items-center btn-search ${theme === "dark" ? 'bg-secondary-dark' : 'bg-secondary'} transition-theme`} alt="Search">
-            <img src={lupa} alt="Search" className='icon-search' ></img>
-          </button>
-          <input type="text" placeholder="Buscar" className={`input-search ${theme === "dark" ? 'bg-third-dark' : 'bg-third'} transition-theme`}></input>
-        </div>
-      )}
-    </div>
+      {
+        Route === 'si' && (
+          <div className='visible-sm  ms-2 text-center m'>
+            <button className={`bg-secondary p-2 d-flex align-items-center btn-search ${theme === "dark" ? 'bg-secondary-dark' : 'bg-secondary'} transition-theme`} alt="Search">
+              <img src={lupa} alt="Search" className='icon-search' ></img>
+            </button>
+            <input type="text" placeholder="Buscar" className={`input-search ${theme === "dark" ? 'bg-third-dark' : 'bg-third'} transition-theme`}></input>
+          </div>
+        )
+      }
+    </div >
 
   );
 };
