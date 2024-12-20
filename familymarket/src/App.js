@@ -6,6 +6,8 @@ import { ThemeProvider } from "./Context/ThemeContext";
 import Login from "./Pages/IniciarSecion/Login";
 import { AuthProvider } from "./Context/AuthContext";
 import NotFound from "./Pages/NotFound/NotFound";
+import Register from "./Pages/Register/Register";
+import User from "./Pages/User/User";
 
 const router = createBrowserRouter([
   {
@@ -21,8 +23,12 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/Registrase",
-    element: <></>,
+    path: "/Registrarse",
+    element: <Register/>,
+  },
+  {
+    path: "/MiPerfil",
+    element: <User/>,
   },
   {
     path: "*",

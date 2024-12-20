@@ -1,18 +1,19 @@
 import { useState, useContext } from 'react';
 import { AuthContext } from '../../Context/AuthContext'; 
-import { loginUser } from '../../Services/AuthService';
+import { LoginUserService } from '../../Services/AuthService';
+
 
 const useLogin = () => {
-    const { login } = useContext(AuthContext); // Contexto de autenticación
-    const [error, setError] = useState(null); // Estado para manejar errores
+    const { login } = useContext(AuthContext); 
+    const [error, setError] = useState(null); 
 
-    const ValidateLogin = async (email, password) => {
-        setError(null); 
+    const UseloginUser = async (email, password) => {
         try {
-            const response = await loginUser(email, password);
+            const response = await LoginUserService(email, password);
             if (response.status === 200) {
                 login(response.data);
-                return true;
+                window.location.href = "/";
+                return;
             }
         } catch (error) {
 
@@ -29,7 +30,7 @@ const useLogin = () => {
         } 
     };
 
-    return { ValidateLogin, error }; // Devuelve el estado de error y carga
+    return { UseloginUser, error, setError}; // Devuelve el estado de error y carga
 };
 
 export default useLogin;

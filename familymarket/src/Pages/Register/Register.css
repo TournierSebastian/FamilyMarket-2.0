@@ -1,0 +1,24 @@
+.register-container{
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+
+}
+
+.container-form{
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.button-register{
+    display: flex;
+}
+.img-logo-register{
+    max-width: 150px;
+    width: 90%;
+}
+
+@media (max-width: 620px) {
+    .button-register {
+        display: block;
+    }
+}

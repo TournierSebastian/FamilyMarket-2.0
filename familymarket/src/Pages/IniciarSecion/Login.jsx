@@ -13,19 +13,18 @@ const Login = () => {
     const [Password, SetPassword] = useState("");
     const [Validate, SetValidate] = useState(false);
     
-    const {ValidateLogin, error} = useLogin();
+    const {UseloginUser, error,setError } = useLogin();
 
-    const HandleSumbitFrom = async () => {
-        if (Email === "" || Password === "") {
+    const HandleSumbitFrom = async (e) => {
+
+        e.preventDefault();
+        setError(null);
+        if (Email === "" || Password === "" || Password.length < 8) {
             SetValidate(true);
         } else {
             SetValidate(false);
-            const result = await ValidateLogin(Email, Password);
-            if (result) {
-                // Aquí puedes manejar la redirección o cualquier otra acción después del login exitoso
-                // Por ejemplo, podrías usar el hook useHistory de react-router-dom para redirigir
-                // history.push('/');
-            }
+            await UseloginUser(Email, Password);
+
         }
     }
    
@@ -33,22 +32,22 @@ const Login = () => {
         <div className='contenido'>
             <nav><Navbar /></nav>
             <main className='d-flex justify-content-center align-items-center'>
-                <div className={`Login-Container d-flex  flex-column col-6 mx-auto rounded-3 container   ${theme === "dark" ? " bg-primary-dark " : " bg-primary "}`}>
+                <div className={`Login-Container d-flex  flex-column col-6 mx-auto rounded-3 container my-4  ${theme === "dark" ? " bg-primary-dark " : " bg-primary "}`}>
                     <div className='d-flex align-items-center mb-3 text-login '>
                         <img src={logo} alt='Logo de Family Market' className='logo-login col-6 col-sm-3 col-md-2 col-lg-2'></img>
                         <h3 className={`ms-3  ${theme === "dark" ? "text-white" : "text-black"}`}>Iniciar Seccion</h3>
                     </div>
-                    <div className='d-flex flex-column text-login'>
+                    <form onSubmit={HandleSumbitFrom} className="d-flex flex-column text-login">
                         <label className={`${theme === "dark" ? "text-white" : "text-black"}`}>Correo Electronico</label>
                         <input type='text' className='form-control mb-2' onChange={(e)=>(SetEmail(e.target.value))}></input>
                         {Email === "" && Validate && <p className='text-danger m-0 p-0'>Campo Obligatorio</p>}
                         <label className={`${theme === "dark" ? "text-white" : "text-black"}`}>Contraseña</label>
                         <input type='password' className='form-control mb-2' onChange={(e)=>(SetPassword(e.target.value))}></input>
-                        {Password === "" && Validate && <p className='text-danger  m-0 p-0'>Campo Obligatorio</p>}
+                        {(Password === "" || Password.length < 8) && Validate && <p className='text-danger  m-0 p-0'>{Password === "" ?"Campo Obligatorio": "Debe tener minimo 8 caracteres"}</p>}
                         <Link to='/RecuperarContraseña' className={`text-recuperar-contraseña text-decoration-none text-white `}>
                             ¿Olvidaste tu contraseña?
                         </Link>
-                    </div>
+                    
                     {error !== undefined && <p className='text-danger text-center text-error'>{error}</p>}
                     <div className='d-flex justify-content-center mt-2 text-login'>
                         <button className ={`btn text-white rounded-4 ${theme == "dark" ? "bg-secondary-dark" : "bg-secondary"} `}
@@ -56,6 +55,7 @@ const Login = () => {
                             Ingresar
                         </button>
                     </div>
+                    </form>
                 </div>
             </main>
             <footer><Footer /></footer>

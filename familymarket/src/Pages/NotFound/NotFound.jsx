@@ -12,7 +12,6 @@ const NotFound = () => {
                 <img src={NotFoundicon} className="img-notfound" alt="Not Found" />
             </div>
 
-            {/* Texto y botón */}
             <div className="text-center mt-4">
                 <h1 className="fs-1">404</h1>
                 <p className="fs-3">Page Not Found</p>

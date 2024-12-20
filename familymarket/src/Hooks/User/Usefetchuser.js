@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FetchUserProfile } from '../../Services/FetchUserProfile';
+import { FetchUserProfile } from '../../Services/UserProfile';
 
 const useFetchUser = () => {
     const [user, setUser] = useState(null);
@@ -7,19 +7,18 @@ const useFetchUser = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const getUser = async () => {
+        const getUserProfile = async () => {
             try {
                 const data = await FetchUserProfile(); 
                 setUser(data);
             } catch (err) {
-                console.error("Error al obtener los datos del usuario:", err);
                 setError(err.message);
             } finally {
                 setLoading(false);
             }
         };
 
-        getUser();
+        getUserProfile();
     }, []); 
 
     return { user, error, loading };

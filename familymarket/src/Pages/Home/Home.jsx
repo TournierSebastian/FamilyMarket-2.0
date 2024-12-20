@@ -13,6 +13,7 @@ import { ThemeContext } from '../../Context/ThemeContext';
 import './Home.css';
 
 import Carousel from "react-bootstrap/Carousel";
+import { ToastContainer } from 'react-toastify/unstyled';
 
 
 const Home = () => {
@@ -32,6 +33,8 @@ const Home = () => {
         <Navbar />
       </nav>
       <main>
+      <ToastContainer />
+
         <div className='row align-items-center '>
           <div className="col-12 col-md-6 p-0">
             <img src={empleado} className="img-fluid" alt='Fotografía de un empleado del supermercado sonriendo'></img>
