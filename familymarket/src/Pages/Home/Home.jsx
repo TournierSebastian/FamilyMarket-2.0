@@ -45,7 +45,7 @@ const Home = () => {
                 <h3 className={`fw-bold mb-0 ${theme === 'dark' ? 'text-white' : 'text-dark'}`}>FAMILI MARKET</h3>
                 <p className={`fw-semibold text-wrap mb-0 ${theme === 'dark' ? 'text-white' : 'text-dark'}`}>Descubre nuestra amplia selección de productos frescos y de calidad. ¡Haz clic aquí para ver más!</p>
               </div>
-              <Link to="#" className="text-decoration-none">
+              <Link to="/Productos" className="text-decoration-none">
                 <button className= {`btn rounded-3 fs-5 text-white ${theme === 'dark' ? 'bg-secondary-dark' : 'bg-secondary'}`}  type="button">Ver Productos</button>
               </Link>
             </div>

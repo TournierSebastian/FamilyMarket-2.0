@@ -8,7 +8,7 @@ import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../../Context/ThemeContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun, faMoon, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faSun, faMoon} from "@fortawesome/free-solid-svg-icons";
 import useFetchUser from '../../Hooks/User/Usefetchuser';
 import { AuthContext } from '../../Context/AuthContext';
 

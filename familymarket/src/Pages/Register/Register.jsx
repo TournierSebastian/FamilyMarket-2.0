@@ -7,9 +7,11 @@ import logo from '../../Assets/Icons/Logo.png'
 import { Link } from 'react-router-dom'
 import UserRegister from '../../Hooks/Authentication/UseRegister'
 import useLogin from '../../Hooks/Authentication/UseLogin'
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 const Register = () => {
     const { theme } = useContext(ThemeContext);
-
     const [nombre, setNombre] = useState('');
     const [telefono, setTelefono] = useState('');
     const [email, setEmail] = useState('');
@@ -18,6 +20,7 @@ const Register = () => {
     const [Vendedor, setVendedor] = useState(false);
     const [CodeSeller, setCodeSeller] = useState('');
     const [ValidateError, setValidateError] = useState(false);
+    const [ShowPassword, SetShowPassword] = useState(true);
 
     const { UseRegisterCustomer, UseSellerCustomer, error, setError } = UserRegister();
     const { UseloginUser } = useLogin();
@@ -35,7 +38,7 @@ const Register = () => {
             if (result) (
                 await UseloginUser(email, password)
             );
-        }else{
+        } else {
             const result = await UseSellerCustomer(nombre, email, password, telefono, CodeSeller);
             if (result) (
                 await UseloginUser(email, password)
@@ -92,7 +95,10 @@ const Register = () => {
                             <input type="email" id="correo" name="correo" className="form-control" placeholder='Ingresa tu Correo Electronico' onChange={(e) => (setEmail(e.target.value))} />
                             {(ValidateError && email.trim() === '') && <p className='text-danger  m-0 p-0'>El correo es obligatorio</p>}
                             <label htmlFor="password" className={`${theme === 'dark' ? "text-white" : "text-black"}`} >Contraseña</label>
-                            <input type="password" id="password" name="password" className="form-control" placeholder='Ingresa tu Contraseña' onChange={(e) => (setPassword(e.target.value))} />
+                            <div className='position-relative'>
+                                <input type={ShowPassword ? "password" : "text"} id="pa</div>ssword" name="password" className="form-control" placeholder='Ingresa tu Contraseña' onChange={(e) => (setPassword(e.target.value))} />
+                                <FontAwesomeIcon icon={ShowPassword ? faEye : faEyeSlash} className='icon-eye position-absolute top-50 end-0 translate-middle-y me-2' onClick={() => (SetShowPassword(!ShowPassword))}></FontAwesomeIcon>
+                            </div>
                             {(ValidateError && (password.trim() === '' || password.trim().length < 8)) && <p className='text-danger  m-0 p-0'>{password == "" ? "La contraseña es obligatoria" : "Minimo 8 carcacteres"}</p>}
                             <label htmlFor="confirm-password" className={`${theme === 'dark' ? "text-white" : "text-black"}`} >Confirmar Contraseña</label>
                             <input type="password" id="confirm-password" name="confirm-password" className="form-control" placeholder='Confirma tu contraseña' onChange={(e) => (setConfirmPassword(e.target.value))} />

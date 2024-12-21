@@ -8,6 +8,8 @@ import { AuthProvider } from "./Context/AuthContext";
 import NotFound from "./Pages/NotFound/NotFound";
 import Register from "./Pages/Register/Register";
 import User from "./Pages/User/User";
+import Cart from "./Pages/Cart/Cart";
+import Productos from "./Pages/Productos/Productos";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +18,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/MiCarrito",
-    element: <></>,
+    element: <Cart/>,
   },
   {
     path: "/IniciarSesion",
@@ -29,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "/MiPerfil",
     element: <User/>,
+  },
+  {
+    path: "/Productos",
+    element: <Productos/>,
   },
   {
     path: "*",
