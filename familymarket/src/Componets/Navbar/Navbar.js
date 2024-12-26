@@ -9,19 +9,21 @@ import { Link } from 'react-router-dom';
 import { ThemeContext } from '../../Context/ThemeContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon} from "@fortawesome/free-solid-svg-icons";
-import useFetchUser from '../../Hooks/User/Usefetchuser';
+import useFetchUser from '../../Hooks/User/UseFetchUserProfile';
 import { AuthContext } from '../../Context/AuthContext';
 
 const Navbar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const [Route, Setroute] = useState("");
-  const { user } = useFetchUser();
+  const { user, getUserProfile } = useFetchUser();
   const {role} = useContext(AuthContext);
 
   useEffect(() => {
     const currentPath = window.location.pathname;
     Setroute(currentPath);
+    getUserProfile();
   }, []);
+  
   useEffect(() => {
     console.log("User role:", role);
   }, [role]);

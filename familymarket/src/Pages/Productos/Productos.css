@@ -1,0 +1,23 @@
+.select-custom {
+    min-width: 130px;
+}
+
+.container-select {
+    display: flex;
+}
+
+
+
+
+@media (max-width: 575px) {
+    .products-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* .img-product{
+   max-width: 100px;
+   width: 90%;
+   height: 100px;
+} */
