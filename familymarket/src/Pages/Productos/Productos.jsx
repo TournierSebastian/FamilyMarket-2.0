@@ -5,25 +5,36 @@ import UseFetchProducts from '../../Hooks/Products/UseFetchProducts'
 import { ThemeContext } from '../../Context/ThemeContext'
 import './Productos.css'
 import logo from '../../Assets/Icons/Logo.png'
-const Productos = () => {
 
+const Productos = () => {
     const { theme } = useContext(ThemeContext);
     const [sortOrder, setSortOrder] = useState('');
     const [sortDirection, setSortDirection] = useState(true);
-
+    const [page, setPage] = useState(1);
 
     const { GetProducts, Productos } = UseFetchProducts();
+
     useEffect(() => {
         const params = {
             sortBy: sortOrder,
             isAscending: sortDirection,
-            pageNumber: 1,
-            pageSize: 10
+            pageNumber: page,
+            pageSize: 8
         };
         GetProducts(params);
-    }, [])
+    }, [page]);
 
+    const nextpage = () => {
+        if (Productos && Productos.length > 0) {
+            setPage(page + 1);
+        }
+    };
 
+    const prevpage = () => {
+        if  (page > 1) {
+            setPage(page - 1);
+        }
+    };
 
     return (
         <div className='contenido'>
@@ -63,7 +74,7 @@ const Productos = () => {
                         <div className={`d-flex m-2 ${theme === 'dark' ? 'bg-secondary-dark' : 'bg-secondary'} rounded-2 py-1 products-container`} key={index}>
                             {product.image == null || product.image.imageUrl == null ? (
                                 <div className='bg-third col-4 col-sm-5 col-md-2 rounded-2 d-flex justify-content-center align-items-center m-2 flex-column'>
-                                   <img src={logo}  className="img-fluid p-2" ></img>
+                                    <img src={logo} className="img-fluid p-2" ></img>
                                     <p className='m-0 p-0'>Producto Sin Imagen</p>
                                 </div>
                             ) : (
@@ -73,8 +84,8 @@ const Productos = () => {
                             )}
                             <div className="col-11 col-sm-6 col-md-8 d-flex flex-column justify-content-between mx-2">
                                 <div>
-                                <h2 className="product-name text-white">{product.name}</h2>
-                                <p className="product-description text-white">{product.description}</p>
+                                    <h2 className="product-name text-white">{product.name}</h2>
+                                    <p className="product-description text-white">{product.description}</p>
                                 </div>
                                 <div className="d-flex justify-content-between mb-2">
                                     <span className={`product-price text-white px-2  py-1 rounded-3  ${theme === 'dark' ? 'bg-primary-dark' : 'bg-primary'}`}>${product.price}</span>
@@ -83,6 +94,11 @@ const Productos = () => {
                             </div>
                         </div>
                     ))}
+
+                    <div className='d-flex justify-content-center mb-4'>
+                        <button className={`btn ${theme === 'dark' ? 'bg-primary-dark' : 'bg-primary'} text-white mx-2`} onClick={prevpage}>Anterior</button>
+                        <button className={`btn ${theme === 'dark' ? 'bg-primary-dark' : 'bg-primary'} text-white  mx-2`} onClick={nextpage}>Siguiente</button>
+                    </div>
                 </div>
             </main>
             <footer><Footer /></footer>
