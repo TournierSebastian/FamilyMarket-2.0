@@ -22,7 +22,7 @@ const Productos = () => {
             pageSize: 8
         };
         GetProducts(params);
-    }, [page]);
+    }, [page, sortDirection, sortOrder]);
 
     const nextpage = () => {
         if (Productos && Productos.length > 0) {
@@ -31,7 +31,7 @@ const Productos = () => {
     };
 
     const prevpage = () => {
-        if  (page > 1) {
+        if (page > 1) {
             setPage(page - 1);
         }
     };
@@ -71,14 +71,14 @@ const Productos = () => {
                     </div>
 
                     {Productos && Productos.map((product, index) => (
-                        <div className={`d-flex m-2 ${theme === 'dark' ? 'bg-secondary-dark' : 'bg-secondary'} rounded-2 py-1 products-container`} key={index}>
+                        <div className={`d-flex mx-0 my-2 ${theme === 'dark' ? 'bg-secondary-dark' : 'bg-secondary'} rounded-2 py-1 products-container`} key={index}>
                             {product.image == null || product.image.imageUrl == null ? (
-                                <div className='bg-third col-4 col-sm-5 col-md-2 rounded-2 d-flex justify-content-center align-items-center m-2 flex-column'>
+                                <div className={`${theme === 'dark' ? 'bg-third-dark' : 'bg-third'} col-4 col-sm-5 col-md-2 rounded-2 d-flex justify-content-center align-items-center m-2 flex-column`}>
                                     <img src={logo} className="img-fluid p-2" ></img>
                                     <p className='m-0 p-0'>Producto Sin Imagen</p>
                                 </div>
                             ) : (
-                                <div className='bg-third col-4 col-sm-5 col-md-2 rounded-2 d-flex justify-content-center align-items-center m-2'>
+                                <div className={`${theme === 'dark' ? 'bg-third-dark' : 'bg-third'} col-4 col-sm-5 col-md-2 rounded-2 d-flex justify-content-center align-items-center m-2 `}>
                                     <img src={product.image.imageUrl} alt={product.name} className="img-fluid p-2" />
                                 </div>
                             )}
@@ -88,8 +88,24 @@ const Productos = () => {
                                     <p className="product-description text-white">{product.description}</p>
                                 </div>
                                 <div className="d-flex justify-content-between mb-2">
-                                    <span className={`product-price text-white px-2  py-1 rounded-3  ${theme === 'dark' ? 'bg-primary-dark' : 'bg-primary'}`}>${product.price}</span>
-                                    <button className={` btn ${theme === 'dark' ? 'bg-primary-dark' : 'bg-primary'} p-1 m-0 text-white`}>Agregar al carrito</button>
+
+                                    {product.discount > 0 ? (
+                                        <>
+                                            <div className='d-flex flex-column' >
+                                                <span className={`product-price text-white px-2  py-1 rounded-3  my-1 text-center ${theme === 'dark' ? 'color-offer-dark' : 'color-offer'}`}>En oferta: %{product.discount}</span>
+                                                <span className={`product-price text-white px-2  py-1 rounded-3 text-center ${theme === 'dark' ? 'bg-primary-dark' : 'bg-primary'}`}> <s>${product.price}</s> ${product.price - (product.price * product.discount) / 100}</span>
+                                            </div>
+                                            <button className={` btn ${theme === 'dark' ? 'bg-primary-dark' : 'bg-primary'} p-1 text-white`} style={{maxHeight: '35px', marginTop: '37px'}}>Agregar al carrito</button>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <div className='d-flex flex-column' >
+                                                <span className={`product-price text-white px-2  py-1 rounded-3 text-center ${theme === 'dark' ? 'bg-primary-dark' : 'bg-primary'}`}> ${product.price}</span>
+                                            </div>
+                                            <button className={` btn ${theme === 'dark' ? 'bg-primary-dark' : 'bg-primary'} p-1 m-0 text-white`}>Agregar al carrito</button>
+                                        </>
+                                    )}
+
                                 </div>
                             </div>
                         </div>

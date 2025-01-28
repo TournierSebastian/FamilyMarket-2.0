@@ -6,7 +6,13 @@
     display: flex;
 }
 
+.color-offer{
+    background-color: #C136F1;
+}
 
+.color-offer-dark{
+    background-color: #A219D2;
+}
 
 
 @media (max-width: 575px) {
